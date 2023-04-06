@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Quản lý nhân viên</title>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<!-- Bootstrap 4 -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+	<!-- JQuery UI -->
+	<link rel="stylesheet" href="/assets/css/jquery-ui.min.css">
+	<!--CSS -->
+	<link rel="stylesheet" href="/assets/css/modal.css">
+	<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<nav id="sidebar">
+			<div class="sidebar-header">
+				<h3>Quản lý viện nghiên cứu</h3>
+				<strong>QL</strong>
+			</div>
+
+			<ul class="list-unstyled components">
+				<li class="active">
+					<a href="#homeSubmenu">
+						<i class="fa fa-home"></i>
+						Trang chính
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="fa fa-paper-plane"></i>
+						Liên hệ
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<div id="content">
+			<div class="container">
+				<div class="card text-center">
+					<div class="card-header myCardHeader">
+						<div class="row">
+							<div class="col-md-6">
+								<h3 class="text-left text-primary font-weight-bold">Danh sách người dùng</h3>
+							</div>
+							<div class="col-md-6 text-right">
+								<button class="btn btn-primary" id="btnThem" data-toggle="modal"
+									data-target="#myModal">Thêm người dùng</button>
+							</div>
+						</div>
+					</div>
+					<div class="card-body">
+						<div class="row mb-3">
+							<div class="col-4">
+								<div class="input-group">
+									<input type="text" class="form-control keyWord" placeholder="Tên người dùng" id="searchName">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="btnTimNV"><i class="fa fa-search"></i></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-4">
+								<div class="sortByName bg-danger w-25">
+									<p class="text-white mb-0">Tên</p>
+									<i class="fa fa-arrow-up d-none" id="SapXepTang"></i>
+										<i class="fa fa-arrow-down " id="sapXepGiam"></i>
+								</div>
+							</div>
+							<div class="col-4">
+								<select name="sortByType" id="sortByType" class="bg-info">
+									<option value="student">Học sinh</option>
+									<option value="teacher">Giảng viên</option>
+									<option value="customer">Khách hàng</option>
+									<option value="defaut" selected>Tất cả</option>
+								</select>
+							</div>
+						</div>
+						<table class="table table-bordered table-hover myTable">
+							<thead class="text-primary">
+								<tr>
+									<th class="nowrap">
+										<span class="mr-1">Tài khoản</span>
+									</th>
+									<th>Họ và tên</th>
+									<th>Email</th>
+									<th>Địa chỉ</th>
+									
+									<th>Thông tin</th>
+									<th><em class="fa fa-cog"></em></th>
+								</tr>
+							</thead>
+							<tbody id="tableDanhSach">
+
+							</tbody>
+						</table>
+					</div>
+					<div class="card-footer myCardFooter">
+						<nav>
+							<ul class="pagination justify-content-center" id="ulPhanTrang">
+
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<!-- MODAL -->
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<header class="head-form mb-0">
+					<h2 id="header-title">Log In</h2>
+				</header>
+				<div class="modal-body">
+
+					<form role="form" id="myFormLogin">
+
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fa fa-user"></i></span>
+								</div>
+								<input type="text" name="tk" id="tknv" class="form-control input-sm"
+									placeholder="Tài khoản">
+							</div>
+
+							<span class="sp-thongbao" id="tbTKNV"></span>
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fa fa-address-book"></i></span>
+								</div>
+								<input type="name" name="name" id="name" class="form-control input-sm"
+									placeholder="Họ và tên">
+							</div>
+							<span class="sp-thongbao" id="tbTen"></span>
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+								</div>
+								<input type="email" name="email" id="email" class="form-control input-sm"
+									placeholder="Email">
+							</div>
+
+							<span class="sp-thongbao" id="tbEmail"></span>
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fa fa-key"></i></span>
+								</div>
+								<input type="text" name="adress" id="adress" class="form-control input-sm"
+									placeholder="Địa chỉ">
+							</div>
+							<span class="sp-thongbao" id="tbAdress"></span>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fa fa-briefcase"></i></span>
+								</div>
+								<select class="form-control" id="proper" onchange="renderInput()">
+									<option value="">Định dạng đặc tính</option>
+									<option value="student">Học sinh</option>
+									<option value="teacher">Giảng viên</option>
+									<option value="customer">Khách Hàng</option>
+								</select>
+							</div>
+							<span class="sp-thongbao" id="tbProper"></span>
+						</div>
+						<div class="renderInput"></div>
+					</form>
+				</div>
+				<!-- Modal footer -->
+				<div class="modal-footer" id="modal-footer">
+					<button id="btnThemNV" type="button" class="btn btn-success">Thêm người dùng</button>
+					<button id="btnCapNhat" type="button" class="btn btn-success">Cập nhật</button>
+					<button id="btnDong" type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- BS -->
+	<script src="/app/services/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/app/services/js/jquery.easing.min.js"></script>
+	<script type="text/javascript" src="/app/services/js/popper.min.js"></script>
+	<script type="text/javascript" src="/app/services/js/bootstrap.min.js"></script>
+
+	<!-- Date Picker -->
+	<script src="/app/services/js/jquery-ui.js"></script>
+	<script src="/app/services/js/datepicker.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#sidebarCollapse').on('click', function () {
+				$('#sidebar').toggleClass('active');
+			});
+		});
+	</script>
+	<script type="module" src="../../app/models/person.js"></script>
+	<script src="../../app/models/renderInput.js"></script>
+	<script src="../../app/services/js/listPerson.js"></script>
+	<script type="module" src="../../app/controllers/main.js"></script>
+	<script src="../models/validation.js"></script>
+</body>
+
+</html>
